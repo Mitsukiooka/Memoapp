@@ -6,7 +6,8 @@ import Hello from './src/components/hello';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Hello />
+      <Hello bang>This is Mitsuki</Hello>
+      <Hello bang style={{ fontSize: 16 }}>I 'm Web Engineer</Hello>
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
     </View>
