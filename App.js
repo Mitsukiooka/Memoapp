@@ -5,7 +5,8 @@ import MemoDetailScreen from './src/screens/MemoDetailScreen.jsx';
 
 export default function App() {
   return (
-    <MemoDetailScreen />
+    <MemoListScreen />
+    // <MemoDetailScreen />
   );
 }
 

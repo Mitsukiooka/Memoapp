@@ -20,7 +20,7 @@ export default function MemoDetailScreen() {
           この方法ではRailsとReactアプリを別々で作成し、RailsがJSON化した情報を送り、クライアント側がリクエストで受け取る構造をとりますのでそれぞれの作り方は以下を参考にしてください。
         </Text>
       </ScrollView>
-      <CircleButton style={{ top: 160, bottom: 'auto' }}>+</CircleButton>
+      <CircleButton name='edit-2' style={{ top: 160, bottom: 'auto' }} />
     </View>
   );
 };
