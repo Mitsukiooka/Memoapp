@@ -1,22 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ScrollView, Text, StyleSheet } from 'react-native';
+import { shape, string } from 'prop-types';
+import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton.jsx';
+import { dateToString } from '../utils';
 
 export default function MemoDetailScreen(props) {
-  const { navigation } = props;
+  const { navigation, route } = props;
+  const { id } = route.params;
+  const [memo, setMemo] = useState(null);
+
+  useEffect(() => {
+    const { currentUser } = firebase.auth();
+    let unsubscribe = () => {};
+    if (currentUser) {
+      const db = firebase.firestore();
+      const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
+      unsubscribe = ref.onSnapshot((doc) => {
+        console.log(doc.id, doc.data());
+        const data = doc.data();
+        setMemo({
+          id: doc.id,
+          bodyText: data.bodyText,
+          updatedAt: data.updatedAt.toDate(),
+        });
+      });
+    }
+    return unsubscribe;
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.memoHeader}>
-        <Text style={styles.memoTitle}>買い物リスト</Text>
-        <Text style={styles.memoDate}>2021年6月19日 18:00</Text>
+        <Text style={styles.memoTitle} numberOfLines={1}>{memo && memo.bodyText}</Text>
+        <Text style={styles.memoDate}>{memo && dateToString(memo.updatedAt)}</Text>
       </View>
       <ScrollView style={styles.memoBody}>
         <Text style={styles.memoText}>
-          最もスタンダードと言っても良い方法では無いでしょうか。この方法では、RailsをAPIとして作成し、全く別のReactのアプリケーションを作成します。以下の様な利点があります。
-          Railsの問題はRailsで、Reactの問題はReactでと完全に別々で対処できる。
-          Reactアプリケーション以外にもモバイルアプリなど、他のクライアントにも対応することができるので多様な使い方ができ、よりスケールしやすい。
-          この方法ではRailsとReactアプリを別々で作成し、RailsがJSON化した情報を送り、クライアント側がリクエストで受け取る構造をとりますのでそれぞれの作り方は以下を参考にしてください。
+          {memo && memo.bodyText}
         </Text>
       </ScrollView>
       <CircleButton 
@@ -26,6 +48,12 @@ export default function MemoDetailScreen(props) {
       />
     </View>
   );
+};
+
+MemoDetailScreen.propTypes ={
+  route: shape({
+    pramas: shape({ id: string }),
+  }).isRequired,
 };
 
 const styles = StyleSheet.create({
