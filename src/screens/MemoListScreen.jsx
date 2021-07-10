@@ -7,6 +7,7 @@ import CircleButton from '../components/CircleButton.jsx';
 import LogOutButton from '../components/LogOutButton.jsx';
 import Button from '../components/Button.jsx';
 import Loading from '../components/Loading.jsx';
+import { translateErrors } from '../utils/index.js';
 
 
 export default function MemoListScreen(props) {
@@ -31,7 +32,6 @@ export default function MemoListScreen(props) {
         const userMemos = [];
         snapshot.forEach((doc) => {
           const data = doc.data();
-          console.log(doc.id, doc.data());
           userMemos.push({
             id: doc.id,
             bodyText: data.bodyText,
@@ -41,9 +41,9 @@ export default function MemoListScreen(props) {
         setMemos(userMemos);
         setLoading(false);
     }, (error) => {
-      console.log(error);
       setLoading(false);
-      Alert.alert('Failed to read data');
+      const errorMsg = translateErrors(error.code);
+      Alert.alert(errorMsg.title, errorMsg.description);
     });
     }
     return unsubscribe;

@@ -33,6 +33,6 @@ export function translateErrors(code) {
       error.description = 'Password is weak!';
       break;
     default:
-  }
+  };
   return error;
 }
