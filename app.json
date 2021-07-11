@@ -18,7 +18,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifire": "jp.toro.mickey-ios",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
