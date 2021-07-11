@@ -19,8 +19,8 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifire": "jp.toro.mickey-ios",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.mickey0907.Memoapp"
     },
     "android": {
       "adaptiveIcon": {
