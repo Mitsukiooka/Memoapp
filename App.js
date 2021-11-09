@@ -20,16 +20,16 @@ if (firebase.apps.length === 0) {
 };
 
 const Stack = createStackNavigator();
-LogBox.ignoreLogs(['Setting a timer']);
+
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
         initialRouteName="LogIn"
         screenOptions={{
-          headerStyle: { backgroundColor: '#467fd3', },
+          headerStyle: { backgroundColor: '#FF1393', },
           headerTitleStyle: { color: '#ffffff'},
-          headerTitle: "Memo App",
+          headerTitle: "Movie Log",
           headerTintColor: '#ffffff',
           headerBackTitle: 'Back',
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,

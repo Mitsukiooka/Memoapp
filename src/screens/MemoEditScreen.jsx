@@ -6,7 +6,7 @@ import { shape, string } from 'prop-types';
 import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton.jsx';
-import KeyboardSafeView from '../components/KeyboardSafeView.jsx';
+
 import { translateErrors } from '../utils/index.js';
 
 export default function MemoEditScreen(props) {
@@ -34,7 +34,7 @@ export default function MemoEditScreen(props) {
   };
 
   return (
-    <KeyboardSafeView style={styles.container} >
+    <View style={styles.container} >
       <View style={styles.inputContainer}>
         <TextInput 
           value={body} 
@@ -44,7 +44,7 @@ export default function MemoEditScreen(props) {
         />
       </View>
       <CircleButton name='check' onPress={handlePress}/>
-    </KeyboardSafeView>
+    </View>
   );
 };
 

@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 
 import CircleButton from '../components/CircleButton.jsx';
-import KeyboardSafeView from '../components/KeyboardSafeView.jsx';
+
 import firebase from 'firebase';
 import { translateErrors } from '../utils/index.js';
 
@@ -29,7 +29,7 @@ export default function MemoCreateScreen(props) {
       })
   }
   return (
-    <KeyboardSafeView style={styles.container} >
+    <View style={styles.container} >
       <View style={styles.inputContainer}>
         <TextInput 
           value={bodyText}
@@ -42,7 +42,7 @@ export default function MemoCreateScreen(props) {
         name='check' 
         onPress={handlePress}
       />
-    </KeyboardSafeView>
+    </View>
   );
 };
 
